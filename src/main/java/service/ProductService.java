@@ -18,4 +18,6 @@ public interface ProductService {
     List<Product> findAll();
 
     Product findById(Long id);
+
+    List<Product> findAllByCategoryId(long categoryId);
 }

@@ -1,10 +1,12 @@
-package repository;
+package repository.impl;
 
 import model.Category;
+import repository.CategoryRepository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import static config.DbConfig.connection;
@@ -50,5 +52,26 @@ public class CategoryRepositoryImpl implements CategoryRepository {
                 statement.executeUpdate();
             }
         }
+    }
+
+    @Override
+    public List<Category> findAll() {
+        List<Category> categoryList = new ArrayList<>();
+
+        String SELECT_ALL = "SELECT * FROM category";
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SELECT_ALL);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                categoryList.add(new Category(
+                        resultSet.getLong("id"),
+                        resultSet.getString("prefix"),
+                        resultSet.getString("name")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return categoryList;
     }
 }

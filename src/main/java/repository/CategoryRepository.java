@@ -17,4 +17,7 @@ public interface CategoryRepository {
     boolean existsById(Long id) throws SQLException;
 
     void saveAll(List<Category> categories) throws SQLException;
+
+    List<Category> findAll();
+
 }

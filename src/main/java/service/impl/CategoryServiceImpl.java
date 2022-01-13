@@ -1,8 +1,9 @@
-package service;
+package service.impl;
 
 import model.Category;
 import repository.CategoryRepository;
-import repository.CategoryRepositoryImpl;
+import repository.impl.CategoryRepositoryImpl;
+import service.CategoryService;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
  * Date: 1/6/2022
  * Time: 7:53 PM
  */
-public class CategoryServiceImpl implements CategoryService{
+public class CategoryServiceImpl implements CategoryService {
     public static CategoryRepository categoryRepository = new CategoryRepositoryImpl();
 
     @Override
@@ -27,7 +28,7 @@ public class CategoryServiceImpl implements CategoryService{
 
     @Override
     public List<Category> findAll() {
-        return null;
+        return categoryRepository.findAll();
     }
 
     @Override

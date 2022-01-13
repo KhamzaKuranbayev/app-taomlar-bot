@@ -1,8 +1,9 @@
-package service;
+package service.impl;
 
 import model.Product;
 import repository.ProductRepository;
-import repository.ProductRepositoryImpl;
+import repository.impl.ProductRepositoryImpl;
+import service.ProductService;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -32,6 +33,11 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product findById(Long id) {
-        return null;
+        return productRepository.findById(id);
+    }
+
+    @Override
+    public List<Product> findAllByCategoryId(long categoryId) {
+        return productRepository.findAllByCategoryId(categoryId);
     }
 }
